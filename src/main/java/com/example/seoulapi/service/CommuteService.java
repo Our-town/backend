@@ -170,7 +170,7 @@ public class CommuteService {
 
 
 
-    // 대중교통 상세
+    // 대중교통 상세 (컨트롤러에서 부르는 핵심 메서드)
     public Map<String, Object> getTransitDetail(
             double startLat,
             double startLng,
@@ -229,7 +229,7 @@ public class CommuteService {
             return noPath;
         }
 
-        // 2. ODsay 상세 경로가 없다면 → 도보로 처리
+        // 2. ODsay 상세 경로가 없고 + 1.5km 이내인 경우 → 도보로 처리
         int walkingMin = drivingToWalkingFallback(startLat, startLng, destLat, destLng);
 
         // 거리 계산

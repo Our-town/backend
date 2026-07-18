@@ -29,14 +29,14 @@ public class PercentileService {
             pb.directory(new File("src/main/resources/ai_module"));
             Process process = pb.start();
 
-            // 파이썬 에러 디버깅 용 stderr
+            // 파이썬 에러 디버깅 용 stderr (오류)
             new Thread(() -> {
                 try (BufferedReader err = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
                     err.lines().forEach(line -> System.err.println("[PYTHON ERR] " + line));
                 } catch (IOException ignored) {}
             }).start();
 
-            // stdout 읽기
+            // stdout(정상적인 실행 결과를 출력하는 통로) 읽기
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String output = reader.lines().collect(Collectors.joining());
             process.waitFor();

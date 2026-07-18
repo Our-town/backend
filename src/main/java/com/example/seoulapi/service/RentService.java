@@ -46,6 +46,7 @@ public class RentService {
         return roomRepository.findByRentFeeBetween(min, max);
     }
 
+    // DB에서 좌표 없는 매물들 찾아서 순차 변환
     @Transactional
     public void fixCoordinatesSequentially() {
         List<RoomEntity> rooms = roomRepository.findRoomsWithoutCoordinates();
@@ -71,7 +72,7 @@ public class RentService {
 
                 updatedCount++;
 
-                // 100건마다 flush
+                // 500건마다 flush
                 if (updatedCount % 500 == 0) {
                     roomRepository.flush();
 
@@ -205,6 +206,7 @@ public class RentService {
         return entity;
     }
 
+    // row 저장할 때 바로 좌표까지 붙여서 저장(단건)
     public void saveRoomWithCoordinate(JsonNode row) {
         RoomEntity entity = convertRowToEntity(row, new HashSet<>());
         if (entity == null) return;

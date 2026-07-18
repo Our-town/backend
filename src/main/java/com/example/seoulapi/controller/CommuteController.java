@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+// 출발지 -> 목적지 대중교통 상세 경로를 조회하는 API 엔드포인트
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/commute")

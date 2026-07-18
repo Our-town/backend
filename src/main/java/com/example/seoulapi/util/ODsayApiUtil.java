@@ -20,7 +20,7 @@ public class ODsayApiUtil {
     private final RestTemplate restTemplate = new RestTemplate();
 
 
-    // 추천 리스트용 - 소요 시간만 반환
+    // 추천 리스트용 - 소요 시간만 반환 -> 사용 안함 (getTransitSingle로 갈아탐)
     public Map<String, Integer> getTransitSummary(
             List<Map<String, Object>> origins, double destLng, double destLat
     ) {
